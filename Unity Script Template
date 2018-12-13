@@ -1,1 +1,16 @@
 
+            try{
+                library = new MMO(this, app, args);
+				args.ScriptResult = false;
+				main(app, args);
+				args.ScriptResult = true;
+			}
+			
+			catch(Exception e){
+				args.ScriptResult = false;
+				library.Log("!!! Error Executing Script:" + e.ToString());
+				library.Error();
+			}
+		}
+		
+		public void main(Hyland.Unity.Application app, Hyland.Unity.WorkflowEventArgs args){    
