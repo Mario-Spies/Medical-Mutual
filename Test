@@ -9,7 +9,8 @@ namespace Test
 	
 	// STEP 1: ADD LIBRARY REFERENCE
 	//----------------------------------------------------------------------
-	using MMOCustomLibrary; 
+	using  LogLibrary;
+	
 	//----------------------------------------------------------------------
     
 
@@ -23,12 +24,14 @@ namespace Test
 		//STEP 3: ADD LOGGING VARIABLES
 		//----------------------------------------------------------------------
 		private const Diagnostics.DiagnosticsLevel DIAGNOSTICS_LEVEL = Diagnostics.DiagnosticsLevel.Verbose;
+		private string str_connectionString;
 		//----------------------------------------------------------------------
 		
         #region IWorkflowScript
         public void OnWorkflowScriptExecute(Hyland.Unity.Application app, Hyland.Unity.WorkflowEventArgs args)
         {			
 			try{
+				
 		// STEP 4: Always default script to return false. 
 		//----------------------------------------------------------------------
 				args.ScriptResult = false;
@@ -41,8 +44,11 @@ namespace Test
 				- public string VIEWER_PASS; //set to "viewer" Configuration Item (SQL Viewer account's password) */
 				library = new MMO(this,app,args);
 		//----------------------------------------------------------------------
-			
-	
+				
+		// STEP 6: SET THE CONNECTION STRING
+		//----------------------------------------------------------------------				
+				str_connectionString = library.ONBASE_CONNECTION_STRING;
+	    //----------------------------------------------------------------------
 				
 				// By default Logging is enabled. If you do not want to write out to the Log then set Logging_Enabled to "false".
 			
