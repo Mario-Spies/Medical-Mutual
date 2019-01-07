@@ -207,6 +207,7 @@ namespace MMOCustomLibrary{
 		#region CLASS CONSTRUCTOR
 		public MMO(Hyland.Unity.IWorkflowScript theScript, Hyland.Unity.Application theApp, Hyland.Unity.WorkflowEventArgs theArgs ){	
 			/* DESCRIPTION: Set the script and application to instance */
+			this.str_logMessage = new StringBuilder();
 			this.script = theScript;
 			this.app = theApp; //Hyland application
 			
@@ -223,7 +224,7 @@ namespace MMOCustomLibrary{
 							set variables to the name and verision of that script. These variables will be 
 							used to determine the path of the log file as well as automatically creating 
 							the name of the file.*/
-			
+			this.str_logMessage = new StringBuilder();
 			#region INTIALIZE CONFIGURATION ITEMS
 			/* Gets config items that will return the Onbase environment and viewer password. */
 			app.Configuration.TryGetValue("Environment", out ENVIRONMENT); //Set 'Environment' to the current environment --> OBTest1, OBTest2, or OnBase
@@ -293,7 +294,8 @@ namespace MMOCustomLibrary{
 					
 					TextWriter tw = new StreamWriter(str_Log_Filename, true);
 					tw.WriteLine(strMessage);
-					tw.Close();	
+					tw.Close();
+				 	
 					this.str_logMessage.AppendLine(strMessage);						
 				}
 			}
